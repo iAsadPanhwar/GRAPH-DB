@@ -58,8 +58,27 @@ from langchain_experimental.graph_transformers import LLMGraphTransformer
 llm = ChatGroq(model_name='Gemma2-9b-It')
 llm_transformer = LLMGraphTransformer(llm=llm)
 ```
+4. **Transform Documents into Graph Nodes and Relationships**
+Convert the text documents into graph nodes and relationships, then inspect the output:
+```bash
+graph_documents = llm_transformer.convert_to_graph_documents(documents)
+```
+5. **View Graph Structure**
+Each node and relationship can be visualized or accessed as shown below:
+```bash
+nodes = graph_documents[0].nodes
+relationships = graph_documents[0].relationships
+```
 
+## Example Output
+The graph_documents object will contain structured nodes and relationships based on the entities and associations identified in the text. Example output:
 
+```bash
+[Node(id='Elon Reeve Musk', type='Person'),
+ Node(id='Tesla, Inc.', type='Company'),
+ Relationship(source=Node(id='Elon Reeve Musk', type='Person'), target=Node(id='Tesla, Inc.', type='Company'), type='KEY_ROLE')]
+
+```
 
 
 
